@@ -11,8 +11,8 @@ import NewPost from './newPost';
 
 const App = () => {
     const [userName, setUserName] = useState('')
-    const [alertMessage, setAlertMessage] = useState("Welcome to Stranger's Things, make an account to begin!");
-    const [localStorage, setLocalStorage] = useState('');
+    const [alertMessage, setAlertMessage] = useState('');
+    const [token, setToken] = useState('');
     const [logText, setLogText] = useState('LOGIN')
     const isMounted = useRef(false);
 
@@ -24,8 +24,8 @@ const App = () => {
      }}, [alertMessage]);
 
     useEffect(() => {
-        console.log("token: ", localStorage)    
-    }, [localStorage])
+        console.log("token: ", token)    
+    }, [token])
 
     useEffect(()=> {
         console.log("username: ", userName)
@@ -46,38 +46,35 @@ const App = () => {
             <div className='main'>
                 <Route exact path="/">
                     <Posts 
-                    userName={userName}
-                    setAlertMessage={setAlertMessage} />
+                        userName={userName}
+                        setAlertMessage={setAlertMessage} />
                 </Route>
                 <Route exact path="/login">
                     <Login 
-                    userName={userName}
-                    setUserName={setUserName}
-                    setAlertMessage={setAlertMessage}
-                    setLocalStorage={setLocalStorage}
-                    logText={logText}
-                    setLogText={setLogText} />
+                        setUserName={setUserName}
+                        setAlertMessage={setAlertMessage}
+                        setToken={setToken}
+                        logText={logText}
+                        setLogText={setLogText} />
                 </Route>
                 <Route exact path="/register">
                     <Register 
-                    userName={userName}
-                    setUserName={setUserName}
-                    setAlertMessage={setAlertMessage}
-                    setLocalStorage={setLocalStorage}
-                    setLogText={setLogText} />
+                        setUserName={setUserName}
+                        setAlertMessage={setAlertMessage}
+                        setToken={setToken}
+                        setLogText={setLogText} />
                 </Route>
                 <Route exact path="/logout">
                     <Logout 
-                    setAlertMessage={setAlertMessage}
-                    setUserName={setUserName}
-                    setLocalStorage={setLocalStorage}
-                    setLogText={setLogText} />
+                        setAlertMessage={setAlertMessage}
+                        setUserName={setUserName}
+                        setToken={setToken}
+                        setLogText={setLogText} />
                 </Route>
                 <Route exact path="/newPost">
                     <NewPost
-                    userName={userName}
-                    setAlertMessage={setAlertMessage}
-                    localStorage={localStorage} />
+                        setAlertMessage={setAlertMessage}
+                        token={token} />
                 </Route>
             </div>
             <div className='alert'>

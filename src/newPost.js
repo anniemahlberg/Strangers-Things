@@ -1,38 +1,64 @@
+import { useHistory } from "react-router-dom";
+
 const API_URL = 'https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT-B'
 
 const NewPost = (props) => {
-    const { userName, setAlertMessage, localStorage } = props;
+    const { setAlertMessage, token } = props;
+    const history = useHistory();
     
-    const makePost = async (postData) => {
+    const makePost = async (event) => {
         const title = document.getElementById("np-title").value;
         const description = document.getElementById("np-description").value;
         const price = document.getElementById("np-price").value;
         const location = document.getElementById("np-location").value;
         const deliver = document.getElementById('np-deliver').value;
+        event.preventDefault()
 
-        // still working on this!!! need to make another function similar to log in// 
+        let userPost = {
+          title,
+          description,
+          price,
+          location,
+          willDeliver: deliver
+        }
 
-        const newPost = await fetch(`${API_URL}/posts`, {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage}`
-            },
-            body: JSON.stringify({
-              post: {
-                title: title,
-                description: description,
-                price: price,
-                location: location,
-                willDeliver: deliver
-              }
-            })
-          }).then(response => response.json())
-            .then(result => {
-              console.log(result);
-            })
-            .catch(console.error);
+        await getUserInfo(userPost)
+    
     }
+
+    const getUserInfo = async (userPost) => {
+      if (!userPost.location) {
+        userPost.location = "[On Request]"
+      }
+      
+      const newPost = await fetch(`${API_URL}/posts`, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            post: {
+              title: userPost.title,
+              description: userPost.description,
+              price: userPost.price,
+              location: userPost.location,
+              willDeliver: userPost.deliver
+            }
+          })
+        }).then(response => response.json())
+          .then(result => {
+            console.log(result);
+            if (!result.error) {
+              setAlertMessage("Your post has been added!")
+              history.push('/')
+            } else {
+              setAlertMessage("There was an error adding your post.")
+            }
+          })
+          .catch(console.error);
+  }
+
 
     return (
         <div className="new-post">

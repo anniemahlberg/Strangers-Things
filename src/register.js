@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 const API_URL = 'https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT-B'
 
 const Register = (props) => {
-    const { userName, setUserName, setAlertMessage, setLocalStorage, setLogText } = props;
+    const { setUserName, setAlertMessage, setToken, setLogText } = props;
     const history = useHistory();
     
     const postUser = async (userData) => {
@@ -23,7 +23,7 @@ const Register = (props) => {
             console.log(result);
             if (!result.error) {
                 setAlertMessage(result.data.message);
-                setLocalStorage(result.data.token);
+                setToken(result.data.token);
                 setUserName(userData.username);
                 setLogText("LOGOUT")
                 return history.push('/');

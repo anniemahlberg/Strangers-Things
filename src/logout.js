@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 
 
 const Logout = (props) => {
-    const { setLocalStorage, setUserName, setAlertMessage, setLogText } = props;
+    const { setToken, setUserName, setAlertMessage, setLogText } = props;
     const history = useHistory();
 
     useEffect(() => {
-        setLocalStorage("");
+        setToken("");
         setUserName("");
         setLogText("LOGIN")
         history.push('/')

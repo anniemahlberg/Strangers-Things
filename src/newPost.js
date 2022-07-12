@@ -30,7 +30,7 @@ const NewPost = (props) => {
       if (!userPost.location) {
         userPost.location = "[On Request]"
       }
-      
+
       const newPost = await fetch(`${API_URL}/posts`, {
           method: "POST",
           headers: {

@@ -2,10 +2,8 @@ import { useHistory } from "react-router-dom";
 
 const API_URL = 'https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT-B'
 
-
-
 const Posts = (props) => {
-    const { userName, setAlertMessage } = props;
+    const { userName, setAlertMessage, setPostID, setPostIndex } = props;
     const history = useHistory();
 
     const fetchPosts = async () => {
@@ -13,6 +11,7 @@ const Posts = (props) => {
             const posts = await fetch(`${API_URL}/posts`);
             const postsResults = await posts.json();
             return postsResults.data.posts;
+
         } catch (err) {
             console.error('Unable to fetch posts', err);
         }
@@ -29,13 +28,13 @@ const Posts = (props) => {
         let postsContainterHTML = '';
         for (let i = 0; i < postList.length; i++) {
             const post = postList[i];
-
+            
             let postHTML = `
                 <div class="single-post">
                     <div class="post-title">
                         <h2>${post.title}</h2>
                         <div class="send-message">
-                            <button>${post.isAuthor ? "VIEW MY POST" : "SEND MESSAGE"}</button>
+                            <button data-id=${post._id} class="view-post-button">${post.author.username === userName ? "VIEW MY POST" : "SEND MESSAGE"}</button>
                         </div>
                     </div>
                     <div class="post-description">
@@ -55,8 +54,18 @@ const Posts = (props) => {
     
             postsContainterHTML += postHTML;
         }
-    
-        return postsContainer.innerHTML = postsContainterHTML;
+
+        postsContainer.innerHTML = postsContainterHTML;
+
+        let viewPostButtons = [...document.getElementsByClassName('view-post-button')]
+        for (let j = 0; j < viewPostButtons.length; j++) {
+            const button = viewPostButtons[j];
+            button.addEventListener('click', () => {
+                setPostID(button.dataset.id)
+                setPostIndex(j)
+                history.push('/viewPost')
+            });
+        }
     }
     
     const initialPosts = async () => {

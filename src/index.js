@@ -7,6 +7,7 @@ import Login from './login';
 import CustomAlert, { showAlert } from './alert';
 import Logout from './logout'
 import NewPost from './newPost';
+import ViewPost from './viewPost';
 
 
 const App = () => {
@@ -15,6 +16,8 @@ const App = () => {
     const [token, setToken] = useState('');
     const [logText, setLogText] = useState('LOGIN')
     const isMounted = useRef(false);
+    const [postIndex, setPostIndex] = useState('');
+    const [postID, setPostID] = useState('');
 
     useEffect(() => {
      if (isMounted.current) {
@@ -45,9 +48,12 @@ const App = () => {
             </div>
             <div className='main'>
                 <Route exact path="/">
-                    <Posts 
+                    <Posts
+                        postIndex={postIndex}
+                        setPostIndex={setPostIndex}
                         userName={userName}
-                        setAlertMessage={setAlertMessage} />
+                        setAlertMessage={setAlertMessage}
+                        setPostID={setPostID} />
                 </Route>
                 <Route exact path="/login">
                     <Login 
@@ -74,6 +80,12 @@ const App = () => {
                 <Route exact path="/newPost">
                     <NewPost
                         setAlertMessage={setAlertMessage}
+                        token={token} />
+                </Route>
+                <Route exact path="/viewPost">
+                    <ViewPost 
+                        postIndex={postIndex}
+                        postID={postID} 
                         token={token} />
                 </Route>
             </div>

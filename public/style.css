@@ -45,7 +45,7 @@ main {
     margin: 10px;
 }
 
-.single-post {
+.single-post, .single-post-container {
     background-color: rgb(246, 246, 240);
     display: flex;
     flex-wrap: wrap;
@@ -54,12 +54,12 @@ main {
     padding: 10px;
 }
 
-.post-title {
+.post-title, .single-post-title {
     width: 100%;
     display: flex;
 }
 
-.post-title h2 {
+.post-title h2, .single-post-title h2 {
     border-bottom: solid black 1px;
 }
 
@@ -104,12 +104,12 @@ main {
     right: 0;
 }
 
-#login-form, #register-link-container, #form-container, .new-post {
+#login-form, #register-link-container, #form-container, .new-post, .edit-post-form {
     background-color: rgb(246, 246, 240);
     padding: 30px;
 }
 
-.login, .register, .new-post {
+.login, .register, .new-post, .edit-post-form {
     text-align: center;
 }
 
@@ -156,7 +156,7 @@ main {
     height: 30px;
 }
 
-#post-stuff button, .submit-button button, .new-post button {
+#post-stuff button, .submit-button button, .new-post button, .single-post-buttons button, .single-post-message button {
     background-color: #B36F91;
     padding: 8px;
     border: 1px solid black;
@@ -165,7 +165,7 @@ main {
     color: white;
 }
 
-#post-stuff button:hover, .submit-button button:hover, .new-post button:hover {
+#post-stuff button:hover, .submit-button button:hover, .new-post button:hover, .single-post-buttons button:hover, .single-post-message button:hover {
     background-color: rgb(208, 255, 208);
     color: black;
     cursor: pointer;
@@ -176,25 +176,66 @@ main {
     color: white;
 }
 
-.new-post {
+.new-post, .edit-post-form {
     margin: 10px;
     padding: 10px;
 }
 
-.new-post input {
+.new-post input, .edit-post-form input {
     width: 300px;
     height: 45px;
     font-size: 20px;
 }
 
-.new-post input[type=checkbox] {
+.new-post input[type=checkbox], .edit-post-form input[type=checkbox] {
     width: 15px;
     height: 15px;
     margin: 15px;
 }
 
-.new-post button {
+.new-post button, .edit-post-form button {
     width: 300px;
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.single-post-description {
+    width: 100%;
+}
+
+.single-post-buttons {
+    text-align: right;
+}
+
+.single-post-message {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.single-post-message h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.single-post-message textarea {
+    height: 100px;
+    width: 400px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.single-post-message-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.single-post-message button {
+    width: 400px;
+}
+
+.input-group label {
+    font-size: 18px;
 }

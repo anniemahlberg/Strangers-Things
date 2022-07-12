@@ -61,20 +61,25 @@ const Posts = (props) => {
         for (let j = 0; j < viewPostButtons.length; j++) {
             const button = viewPostButtons[j];
             button.addEventListener('click', () => {
-                setPostID(button.dataset.id)
-                setPostIndex(j)
-                history.push('/viewPost')
+                if (userName) {
+                    setPostID(button.dataset.id)
+                    setPostIndex(j)
+                    history.push('/viewPost')
+                } else {
+                    setAlertMessage("You must be logged in to send a message.")
+                    history.push('/login')
+                }
             });
         }
     }
-    
+
     const initialPosts = async () => {
         const posts = await fetchPosts();
         renderPosts(posts);
     }
 
     initialPosts();
-    
+            
     return (
         <div className="posts">
             <h1>{ userName ? `Welcome back ${userName}!!` : `Welcome! Log in to get started!`}</h1>

@@ -11,9 +11,9 @@ const NewPost = (props) => {
         const description = document.getElementById("np-description").value;
         const price = document.getElementById("np-price").value;
         const location = document.getElementById("np-location").value;
-        const deliver = document.getElementById('np-deliver').value;
+        const deliver = document.getElementById('np-deliver').checked;
         event.preventDefault()
-
+        
         let userPost = {
           title,
           description,
@@ -21,6 +21,8 @@ const NewPost = (props) => {
           location,
           willDeliver: deliver
         }
+
+        console.log(userPost)
 
         await getUserInfo(userPost)
     
@@ -43,7 +45,7 @@ const NewPost = (props) => {
               description: userPost.description,
               price: userPost.price,
               location: userPost.location,
-              willDeliver: userPost.deliver
+              willDeliver: userPost.willDeliver
             }
           })
         }).then(response => response.json())

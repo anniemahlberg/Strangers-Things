@@ -85,8 +85,10 @@ const App = () => {
                 <Route exact path="/viewPost">
                     <ViewPost 
                         postIndex={postIndex}
-                        postID={postID} 
-                        token={token} />
+                        postID={postID}
+                        userName={userName} 
+                        token={token}
+                        setAlertMessage={setAlertMessage} />
                 </Route>
             </div>
             <div className='alert'>

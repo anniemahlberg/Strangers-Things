@@ -7,7 +7,7 @@ const Login = (props) => {
     const history = useHistory()
     
     const submitLogin = async (event) => {
-        const userNameInput = document.getElementById('login-username').value
+        const userNameInput = document.getElementById('login-username').value;
         const password1Input = document.getElementById('login-password').value;
         event.preventDefault();
         
@@ -33,7 +33,6 @@ const Login = (props) => {
             })
         }).then(response => response.json())
         .then(result => {
-            console.log(result)
             if (!result.error) {
                 setAlertMessage(result.data.message);
                 setToken(result.data.token);

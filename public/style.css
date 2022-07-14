@@ -54,12 +54,12 @@ main {
     padding: 10px;
 }
 
-.post-title, .single-post-title {
+#post-title, .single-post-title, .sm-header {
     width: 100%;
     display: flex;
 }
 
-.post-title h2, .single-post-title h2 {
+#post-title h2, .single-post-title h2 {
     border-bottom: solid black 1px;
 }
 
@@ -87,7 +87,7 @@ main {
     color: black
 }
 
-.post-description {
+#post-description {
     width: 100%;
 }
 
@@ -156,7 +156,7 @@ main {
     height: 30px;
 }
 
-#post-stuff button, .submit-button button, .new-post button, .single-post-buttons button, .single-post-message button {
+#post-stuff button, .submit-button button, .new-post button, .single-post-buttons button, .single-post-message button, .sm-button button {
     background-color: #B36F91;
     padding: 8px;
     border: 1px solid black;
@@ -165,7 +165,7 @@ main {
     color: white;
 }
 
-#post-stuff button:hover, .submit-button button:hover, .new-post button:hover, .single-post-buttons button:hover, .single-post-message button:hover {
+#post-stuff button:hover, .submit-button button:hover, .new-post button:hover, .single-post-buttons button:hover, .single-post-message button:hover, .sm-button button:hover {
     background-color: rgb(208, 255, 208);
     color: black;
     cursor: pointer;
@@ -238,4 +238,31 @@ main {
 
 .input-group label {
     font-size: 18px;
+}
+
+.single-message {
+    background-color: rgb(246, 246, 240);
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 10px;
+}
+
+.sm-button {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.sm-content {
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+}
+
+button:disabled {
+    background-color: gray;
+}
+
+#inbox h2, #sent h2 {
+    text-align: center;
 }

@@ -18,7 +18,7 @@ export const showAlert = () => {
             alertContainer.style.display = 'none';
         }
     
-        setTimeout(removeAlert, 1800)
+        setTimeout(removeAlert, 2000)
     }
 
     const alertContainer = document.getElementById('alert-container');

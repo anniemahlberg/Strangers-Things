@@ -25,37 +25,37 @@ const Posts = (props) => {
             return;
         }
     
-        let postsContainterHTML = '';
+        let postsContainerHTML = '';
         for (let i = 0; i < postList.length; i++) {
             const post = postList[i];
             
             let postHTML = `
                 <div class="single-post">
-                    <div class="post-title">
+                    <div class="post" id="post-title">
                         <h2>${post.title}</h2>
                         <div class="send-message">
                             <button data-id=${post._id} class="view-post-button">${post.author.username === userName ? "VIEW MY POST" : "SEND MESSAGE"}</button>
                         </div>
                     </div>
-                    <div class="post-description">
+                    <div class="post" id="post-description">
                         <p>${post.description}</p>
                     </div>
-                    <div class="post-price">
+                    <div class="post" id="post-price">
                         <p>Price: ${post.price}</p>
                     </div>
-                    <div class="post-location">
+                    <div class="post" id="post-location">
                         <p>Location: ${post.location}</p>
                     </div>
-                    <div class="post-username">
+                    <div class="post" id="post-username">
                         <p>Seller: ${post.author.username}</p>
                     </div>
                 </div>
             `;
     
-            postsContainterHTML += postHTML;
+            postsContainerHTML += postHTML;
         }
 
-        postsContainer.innerHTML = postsContainterHTML;
+        postsContainer.innerHTML = postsContainerHTML;
 
         let viewPostButtons = [...document.getElementsByClassName('view-post-button')]
         for (let j = 0; j < viewPostButtons.length; j++) {
@@ -78,6 +78,22 @@ const Posts = (props) => {
         renderPosts(posts);
     }
 
+    const searchPage = () => {
+        let input = document.getElementById('search-input').value
+        input = input.toLowerCase();
+        let doc = document.getElementsByClassName("single-post")
+
+        for (let i = 0; i < doc.length; i++) {
+            if (!doc[i].innerHTML.toLowerCase().includes(input)) {
+                doc[i].style.display = "none"
+                doc[i].style.backgroundcolor = "white"
+            } else {
+                doc[i].style.display = "flex"
+                doc[i].style.backgroundcolor = "rgb(246, 246, 240)"
+            }
+        }
+    }
+
     initialPosts();
             
     return (
@@ -85,7 +101,7 @@ const Posts = (props) => {
             <h1>{ userName ? `Welcome back ${userName}!!` : `Welcome! Log in to get started!`}</h1>
             <div id="post-stuff">
                 <div id="search-posts">
-                    <input type='text' placeholder="Search Posts"></input>
+                    <input id="search-input" type='text' placeholder="Search Posts" onChange={searchPage}></input>
                     <button>Search</button>
                 </div>
                 <div id="add-post">

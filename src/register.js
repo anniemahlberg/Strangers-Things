@@ -7,7 +7,7 @@ const Register = (props) => {
     const history = useHistory();
     
     const postUser = async (userData) => {
-        const newUser = await fetch(`${API_URL}/users/register`, {
+        await fetch(`${API_URL}/users/register`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -25,6 +25,7 @@ const Register = (props) => {
                 setAlertMessage(result.data.message);
                 setToken(result.data.token);
                 setUserName(userData.username);
+                setLocalStorage(result.data.token)
                 setLogText("LOGOUT")
                 return history.push('/');
             } else {

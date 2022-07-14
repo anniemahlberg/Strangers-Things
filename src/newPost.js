@@ -22,8 +22,6 @@ const NewPost = (props) => {
           willDeliver: deliver
         }
 
-        console.log(userPost)
-
         await getUserInfo(userPost)
     
     }
@@ -50,7 +48,6 @@ const NewPost = (props) => {
           })
         }).then(response => response.json())
           .then(result => {
-            console.log(result);
             if (!result.error) {
               setAlertMessage("Your post has been added!")
               history.push('/')

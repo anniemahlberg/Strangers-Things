@@ -8,7 +8,13 @@ const ViewPost = (props) => {
 
     const fetchThisPost = async () => {
         try {
-            const posts = await fetch(`${API_URL}/posts`);
+            const posts = await fetch(`${API_URL}/posts`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application.json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             const postsResults = await posts.json();
             return postsResults.data.posts[postIndex];
 
@@ -46,6 +52,17 @@ const ViewPost = (props) => {
                         <button class="edit-post-button">EDIT POST</button>
                         <button class="delete-post-button">DELETE POST</button>
                     </div>
+                </div>
+                <div class="post-messages-container">
+                ${postInfo.messages.map(message =>
+                    `<div class='single-message'>
+                     <div class='sm-author'>
+                         <h3>From: ${message.fromUser.username !== userName ? message.fromUser.username : "ME"}</h3>
+                     </div>
+                     <div class='sm-content'>
+                         <p>${message.content}</p>
+                     </div>
+                 </div>`)}
                 </div>`
         } else {
             postDiv.innerHTML = `
@@ -68,7 +85,7 @@ const ViewPost = (props) => {
             </div>
             <div class="single-post-message">
                 <h3>Message User About This Post</h3>
-                <textarea placeholder="Type Message Here"></textarea>
+                <textarea placeholder="Type Message Here" id="message-input"></textarea>
                 <div class="single-post-message-button">
                     <button class="send-message-button">SEND MESSAGE</button>
                 </div>
@@ -93,6 +110,14 @@ const ViewPost = (props) => {
             });
         }
 
+        let messageButtons = [...document.getElementsByClassName('send-message-button')]
+        for (let j = 0; j < messageButtons.length; j++) {
+            const button = messageButtons[j];
+            button.addEventListener('click', () => {
+                sendMessage();
+            });
+        }
+
         const editPostForm = () => {
             const editPostDiv = document.getElementById("edit-post-div")
 
@@ -102,19 +127,19 @@ const ViewPost = (props) => {
                     <div class='inputs'>
                         <div class='input-group'>
                             <label for="ep-title">Title</label>
-                            <input id="ep-title" placeholder="Title" value=${postInfo.title}></input>
+                            <input id="ep-title" placeholder="Title" value="${postInfo.title}"></input>
                         </div>
                         <div class='input-group'>
                             <label for="ep-description">Description</label>
-                            <input id="ep-description" placeholder="Description" value=${postInfo.description}></input>
+                            <input id="ep-description" placeholder="Description" value="${postInfo.description}"></input>
                         </div>
                         <div class='input-group'>
                             <label for="ep-price">Price</label>
-                            <input id="ep-price" placeholder="Price" value=${postInfo.price}></input>
+                            <input id="ep-price" placeholder="Price" value="${postInfo.price}"></input>
                         </div>
                         <div class='input-group'>
                             <label for="ep-location">Location</label>
-                            <input id="ep-location" placeholder="Location" value=${postInfo.location}></input>
+                            <input id="ep-location" placeholder="Location" value="${postInfo.location}"></input>
                         </div>
                         <br />
                         <input id="ep-deliver" type="checkbox" ${postInfo.willDeliver ? "checked" : null}></input>
@@ -152,9 +177,6 @@ const ViewPost = (props) => {
             'Authorization': `Bearer ${token}`
         }
         }).then(response => response.json())
-        .then(result => {
-            console.log(result);
-        })
         .catch(console.error);
     }
 
@@ -181,10 +203,29 @@ const ViewPost = (props) => {
             }
         })
         }).then(response => response.json())
-        .then(result => {
-            console.log(result);
-        })
         .catch(console.error);
+    }
+
+    const sendMessage = () => {
+        const messageInput = document.getElementById("message-input").value;
+        
+        fetch(`${API_URL}/posts/${postID}/messages`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                message: {
+                content: messageInput
+                }
+            })
+            }).then(response => response.json())
+            .then(result => {
+                history.push('/messages');
+                setAlertMessage("Your message has been sent!")
+            })
+            .catch(console.error);
     }
 
     return (

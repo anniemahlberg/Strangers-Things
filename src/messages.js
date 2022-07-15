@@ -100,7 +100,6 @@ const Messages = (props) => {
                         } else {
                             button1.setAttribute("disabled", "")
                             button1.innerHTML = "This post has been deleted"
-                            setAlertMessage("This post has been deleted and no longer exists.")
                         }
                     }
                 })

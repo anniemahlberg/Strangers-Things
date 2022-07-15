@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body, input {
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    position: relative;
+}
+
+.header {
+    background-color: rgb(208, 255, 208);
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    font-family: 'Old Standard TT', serif;
+    align-self: center;
+    letter-spacing: 5px;
+}
+
+.nav {
+    align-self: center;
+}
+
+.nav-link {
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-link:visited {
+    color: black;
+}
+
+.nav-link:hover {
+    border-bottom: 1px solid #B36F91;
+    color: #B36F91;
+}
+
+.posts h1 {
+    text-align: center;
+    margin: 10px;
+}
+
+.single-post, .single-post-container {
+    background-color: rgb(246, 246, 240);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 10px;
+}
+
+#post-title, .single-post-title, .sm-header {
+    width: 100%;
+    display: flex;
+}
+
+#post-title h2, .single-post-title h2 {
+    border-bottom: solid black 1px;
+}
+
+.send-message {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.send-message button {
+    background-color: white;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.send-message button:hover {
+    cursor: pointer;
+    background-color: #B36F91;
+    color: white;
+}
+
+.send-message button:active {
+    background-color: white;
+    color: black
+}
+
+#post-description {
+    width: 100%;
+}
+
+#alert-container {
+    padding: 20px;
+    background-color: #B36F91;
+    color: white;
+    display: none;
+    width: fit-content;
+    margin: auto;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+}
+
+#login-form, #register-link-container, #form-container, .new-post, .edit-post-form {
+    background-color: rgb(246, 246, 240);
+    padding: 30px;
+}
+
+.login, .register, .new-post, .edit-post-form {
+    text-align: center;
+}
+
+#login-form, #register-form {
+    padding-bottom: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputs input {
+    margin: 5px;
+    padding: 5px;
+}
+
+.submit-button {
+    margin-left: 10px;
+    align-self: center;
+}
+
+#register-link {
+    color: black;
+    text-decoration: none;
+}
+
+#register-link:hover {
+    color: #B36F91;
+    border-bottom: #B36F91 solid 1px;
+}
+
+#post-stuff {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+
+#search-posts {
+    margin-right: 25px;
+}
+
+#search-posts input {
+    margin-right: 5px;
+    height: 30px;
+}
+
+#post-stuff button, .submit-button button, .new-post button, .single-post-buttons button, .single-post-message button, .sm-button button {
+    background-color: #B36F91;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+#post-stuff button:hover, .submit-button button:hover, .new-post button:hover, .single-post-buttons button:hover, .single-post-message button:hover, .sm-button button:hover {
+    background-color: rgb(208, 255, 208);
+    color: black;
+    cursor: pointer;
+}
+
+#post-stuff button:active {
+    background-color: #B36F91;
+    color: white;
+}
+
+.new-post, .edit-post-form {
+    margin: 10px;
+    padding: 10px;
+}
+
+.new-post input, .edit-post-form input {
+    width: 300px;
+    height: 45px;
+    font-size: 20px;
+}
+
+.new-post input[type=checkbox], .edit-post-form input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+    margin: 15px;
+}
+
+.new-post button, .edit-post-form button {
+    width: 300px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.single-post-description {
+    width: 100%;
+}
+
+.single-post-buttons {
+    text-align: right;
+}
+
+.single-post-message {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.single-post-message h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.single-post-message textarea {
+    height: 100px;
+    width: 400px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.single-post-message-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.single-post-message button {
+    width: 400px;
+}
+
+.input-group label {
+    font-size: 18px;
+}
+
+.single-message {
+    background-color: rgb(246, 246, 240);
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 10px;
+}
+
+.sm-button {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.sm-content {
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+}
+
+button:disabled {
+    background-color: gray;
+}
+
+#inbox h2, #sent h2 {
+    text-align: center;
+}

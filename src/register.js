@@ -20,12 +20,10 @@ const Register = (props) => {
             })
         }).then(response => response.json())
         .then(result => {
-            console.log(result);
             if (!result.error) {
                 setAlertMessage(result.data.message);
                 setToken(result.data.token);
                 setUserName(userData.username);
-                setLocalStorage(result.data.token)
                 setLogText("LOGOUT")
                 return history.push('/');
             } else {
